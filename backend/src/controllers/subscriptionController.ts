@@ -34,11 +34,9 @@ export const verifyPayment = async (req: Request, res: Response): Promise<void> 
 
     // Save to database
     const subscription = await Subscription.create({
-      user: (req as any).user?._id,
-      planName: planId,
-      status: 'active',
-      razorpayOrderId: razorpay_order_id,
-      razorpayPaymentId: razorpay_payment_id,
+      userId: (req as any).user?._id,
+      planTier: planId,
+      paymentStatus: 'Active',
       endDate: new Date(new Date().setMonth(new Date().getMonth() + 1)) // 1 month validity
     });
 
