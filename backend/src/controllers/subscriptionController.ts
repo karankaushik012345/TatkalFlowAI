@@ -34,7 +34,7 @@ export const verifyPayment = async (req: Request, res: Response): Promise<void> 
 
     // Save to database
     const subscription = await Subscription.create({
-      user: req.user?._id,
+      user: (req as any).user?._id,
       planName: planId,
       status: 'active',
       razorpayOrderId: razorpay_order_id,
@@ -43,7 +43,7 @@ export const verifyPayment = async (req: Request, res: Response): Promise<void> 
     });
 
     // Update user profile
-    await User.findByIdAndUpdate(req.user?._id, { isPremium: true });
+    await User.findByIdAndUpdate((req as any).user?._id, { isPremium: true });
 
     res.status(200).json({ success: true, subscription });
   } catch (error: any) {
