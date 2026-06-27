@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import { RootState } from './app/store';
+import type { RootState } from './app/store';
 import DashboardLayout from './layouts/DashboardLayout';
 import Dashboard from './pages/Dashboard';
 import PassengerVault from './pages/PassengerVault';
@@ -8,10 +8,11 @@ import JourneyTemplates from './pages/JourneyTemplates';
 import ProductivityMode from './pages/ProductivityMode';
 import Pricing from './pages/Pricing';
 import Auth from './pages/Auth';
+import React from 'react';
 
-const PrivateRoute = ({ children }: { children: JSX.Element }) => {
+const PrivateRoute = ({ children }: { children: React.ReactNode }) => {
   const { user } = useSelector((state: RootState) => state.auth);
-  return user ? children : <Navigate to="/login" />;
+  return user ? <>{children}</> : <Navigate to="/login" />;
 };
 
 function App() {

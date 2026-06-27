@@ -19,6 +19,16 @@ export const getTemplates = createAsyncThunk('templates/getAll', async (_, thunk
   }
 });
 
+export const createTemplate = createAsyncThunk('templates/create', async (templateData: any, thunkAPI) => {
+  try {
+    const response = await api.post('/templates', templateData);
+    return response.data;
+  } catch (error: any) {
+    const message = (error.response && error.response.data && error.response.data.message) || error.message || error.toString();
+    return thunkAPI.rejectWithValue(message);
+  }
+});
+
 export const templateSlice = createSlice({
   name: 'template',
   initialState,
@@ -37,6 +47,9 @@ export const templateSlice = createSlice({
         state.isLoading = false;
         state.isError = true;
         state.message = action.payload as string;
+      })
+      .addCase(createTemplate.fulfilled, (state, action) => {
+        state.templates.push(action.payload as never);
       });
   },
 });

@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { login, registerUser, reset } from '../features/auth/authSlice';
-import { AppDispatch, RootState } from '../app/store';
+import type { AppDispatch, RootState } from '../app/store';
 import { Train, Lock, Mail, User } from 'lucide-react';
 import { motion } from 'framer-motion';
 

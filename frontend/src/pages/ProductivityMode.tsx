@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { Copy, ArrowLeft, CheckCircle } from 'lucide-react';
 import { Link, useSearchParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import { RootState } from '../app/store';
+import type { RootState } from '../app/store';
 
 const ProductivityMode = () => {
   const [searchParams] = useSearchParams();

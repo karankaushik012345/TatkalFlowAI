@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
-import { Copy, Plus, User, FileText, X } from 'lucide-react';
+import { Plus, User, FileText, X } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useDispatch, useSelector } from 'react-redux';
 import { getPassengers, createPassenger } from '../features/passengers/passengerSlice';
-import { AppDispatch, RootState } from '../app/store';
+import type { AppDispatch, RootState } from '../app/store';
 
 const PassengerVault = () => {
   const dispatch = useDispatch<AppDispatch>();

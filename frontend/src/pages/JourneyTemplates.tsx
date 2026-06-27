@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react';
-import { Copy, Plus, Train, X } from 'lucide-react';
+import { Plus, Train, X } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { getTemplates, createTemplate } from '../features/templates/templateSlice';
-import { AppDispatch, RootState } from '../app/store';
+import type { AppDispatch, RootState } from '../app/store';
 
 const JourneyTemplates = () => {
   const dispatch = useDispatch<AppDispatch>();
