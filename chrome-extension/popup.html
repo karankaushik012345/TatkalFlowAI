@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TatkalFlowAI Extension</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h2>TatkalFlow<span>AI</span></h2>
+      <div id="statusIndicator" class="status-offline">Offline</div>
+    </div>
+
+    <!-- Login Section -->
+    <div id="loginSection" class="section">
+      <p class="subtitle">Please log in to sync your templates.</p>
+      <input type="email" id="emailInput" placeholder="Email" />
+      <input type="password" id="passwordInput" placeholder="Password" />
+      <button id="loginBtn" class="primary-btn">Log In</button>
+      <div id="loginError" class="error-text"></div>
+    </div>
+
+    <!-- Main Section -->
+    <div id="mainSection" class="section hidden">
+      <p class="subtitle">Select a template to autofill on IRCTC.</p>
+      <div id="templateList" class="template-list">
+        <!-- Templates injected here -->
+      </div>
+      <button id="logoutBtn" class="secondary-btn mt-4">Log Out</button>
+    </div>
+  </div>
+  <script src="popup.js"></script>
+</body>
+</html>

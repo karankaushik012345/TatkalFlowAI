@@ -1,0 +1,151 @@
+body {
+  margin: 0;
+  padding: 0;
+  width: 320px;
+  background-color: #0D0D0D;
+  color: #fff;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+.container {
+  padding: 16px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #1F2937;
+  padding-bottom: 12px;
+  margin-bottom: 16px;
+}
+
+.header h2 {
+  margin: 0;
+  font-size: 1.25rem;
+  color: #3B82F6;
+}
+
+.header span {
+  color: #fff;
+}
+
+.status-offline {
+  font-size: 0.75rem;
+  color: #EF4444;
+  background-color: rgba(239, 68, 68, 0.1);
+  padding: 2px 8px;
+  border-radius: 12px;
+}
+
+.status-online {
+  font-size: 0.75rem;
+  color: #10B981;
+  background-color: rgba(16, 185, 129, 0.1);
+  padding: 2px 8px;
+  border-radius: 12px;
+}
+
+.subtitle {
+  font-size: 0.875rem;
+  color: #9CA3AF;
+  margin-bottom: 16px;
+}
+
+input {
+  width: 100%;
+  box-sizing: border-box;
+  background-color: #1F2937;
+  border: 1px solid #374151;
+  color: white;
+  padding: 8px 12px;
+  border-radius: 6px;
+  margin-bottom: 12px;
+  outline: none;
+}
+
+input:focus {
+  border-color: #3B82F6;
+}
+
+.primary-btn {
+  width: 100%;
+  background-color: #2563EB;
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.primary-btn:hover {
+  background-color: #1D4ED8;
+}
+
+.secondary-btn {
+  width: 100%;
+  background-color: transparent;
+  color: #F87171;
+  border: 1px solid #7F1D1D;
+  padding: 8px;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.secondary-btn:hover {
+  background-color: #450A0A;
+}
+
+.hidden {
+  display: none !important;
+}
+
+.error-text {
+  color: #F87171;
+  font-size: 0.75rem;
+  margin-top: 8px;
+  text-align: center;
+}
+
+.template-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.template-item {
+  background-color: #111827;
+  border: 1px solid #1F2937;
+  padding: 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.template-item:hover {
+  border-color: #3B82F6;
+}
+
+.template-item.active {
+  border-color: #10B981;
+  background-color: rgba(16, 185, 129, 0.05);
+}
+
+.template-title {
+  font-weight: bold;
+  font-size: 0.9rem;
+  margin-bottom: 4px;
+}
+
+.template-meta {
+  font-size: 0.75rem;
+  color: #9CA3AF;
+}
+
+.mt-4 {
+  margin-top: 16px;
+}

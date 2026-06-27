@@ -1,0 +1,26 @@
+{
+  "manifest_version": 3,
+  "name": "TatkalFlowAI",
+  "version": "1.0",
+  "description": "Lightning fast Tatkal booking autofill.",
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "TatkalFlowAI"
+  },
+  "permissions": [
+    "storage",
+    "activeTab",
+    "scripting"
+  ],
+  "host_permissions": [
+    "*://*.irctc.co.in/*",
+    "https://tatkalflowai-backend.onrender.com/*"
+  ],
+  "content_scripts": [
+    {
+      "matches": ["*://*.irctc.co.in/*"],
+      "js": ["content.js"],
+      "run_at": "document_end"
+    }
+  ]
+}
