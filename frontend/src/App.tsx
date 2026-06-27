@@ -1,20 +1,26 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { RootState } from './app/store';
 import DashboardLayout from './layouts/DashboardLayout';
 import Dashboard from './pages/Dashboard';
 import PassengerVault from './pages/PassengerVault';
 import JourneyTemplates from './pages/JourneyTemplates';
 import ProductivityMode from './pages/ProductivityMode';
 import Pricing from './pages/Pricing';
+import Auth from './pages/Auth';
 
-const Login = () => <div className="p-6 flex items-center justify-center h-screen bg-[#0D0D0D] text-white"><h1 className="text-2xl font-bold">Login Page</h1></div>;
+const PrivateRoute = ({ children }: { children: JSX.Element }) => {
+  const { user } = useSelector((state: RootState) => state.auth);
+  return user ? children : <Navigate to="/login" />;
+};
 
 function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/login" element={<Login />} />
-        <Route path="/productivity" element={<ProductivityMode />} />
-        <Route path="/" element={<DashboardLayout />}>
+        <Route path="/login" element={<Auth />} />
+        <Route path="/productivity" element={<PrivateRoute><ProductivityMode /></PrivateRoute>} />
+        <Route path="/" element={<PrivateRoute><DashboardLayout /></PrivateRoute>}>
           <Route index element={<Dashboard />} />
           <Route path="passengers" element={<PassengerVault />} />
           <Route path="templates" element={<JourneyTemplates />} />
