@@ -1,15 +1,26 @@
-import { Outlet, Link } from 'react-router-dom';
+import { Outlet, Link, useNavigate } from 'react-router-dom';
 import { Home, Users, BookOpen, LogOut, CreditCard } from 'lucide-react';
 import { useEffect } from 'react';
 import { io } from 'socket.io-client';
 import toast, { Toaster } from 'react-hot-toast';
+import { useDispatch, useSelector } from 'react-redux';
+import { logout, reset } from '../features/auth/authSlice';
+import type { AppDispatch, RootState } from '../app/store';
 
 const DashboardLayout = () => {
+  const dispatch = useDispatch<AppDispatch>();
+  const navigate = useNavigate();
+  const { user } = useSelector((state: RootState) => state.auth);
+
   useEffect(() => {
-    // In a real app, grab token/userId from Redux or localStorage
-    const socket = io('http://localhost:5000');
+    if (!user) {
+      navigate('/login');
+      return;
+    }
+
+    const socket = io(import.meta.env.VITE_API_URL?.replace('/api/v1', '') || 'http://localhost:5000');
     
-    socket.emit('join', 'dummy_user_id'); // Mock joining room
+    socket.emit('join', user._id);
     
     socket.on('TATKAL_ALERT', (data) => {
       toast.success(data.message || 'Tatkal Window Opening Soon!', {
@@ -26,7 +37,13 @@ const DashboardLayout = () => {
     return () => {
       socket.disconnect();
     };
-  }, []);
+  }, [user, navigate]);
+
+  const onLogout = () => {
+    dispatch(logout());
+    dispatch(reset());
+    navigate('/login');
+  };
 
   return (
     <div className="flex h-screen bg-[#0D0D0D] text-white">
@@ -55,7 +72,7 @@ const DashboardLayout = () => {
           </Link>
         </nav>
         <div className="p-4 border-t border-gray-800">
-          <button className="flex w-full items-center space-x-3 p-3 rounded-lg text-red-400 hover:bg-gray-800 transition-colors">
+          <button onClick={onLogout} className="flex w-full items-center space-x-3 p-3 rounded-lg text-red-400 hover:bg-gray-800 transition-colors">
             <LogOut className="w-5 h-5" />
             <span>Logout</span>
           </button>
@@ -66,9 +83,9 @@ const DashboardLayout = () => {
       <main className="flex-1 overflow-y-auto">
         <header className="h-16 border-b border-gray-800 flex items-center justify-end px-6">
           <div className="flex items-center space-x-4">
-            <span className="text-sm text-gray-400">Pro Plan</span>
-            <div className="w-8 h-8 rounded-full bg-blue-600 flex items-center justify-center font-bold">
-              U
+            <span className="text-sm text-gray-400">{user?.name}</span>
+            <div className="w-8 h-8 rounded-full bg-blue-600 flex items-center justify-center font-bold uppercase text-white shadow-lg border border-blue-400">
+              {user?.name?.charAt(0) || 'U'}
             </div>
           </div>
         </header>
